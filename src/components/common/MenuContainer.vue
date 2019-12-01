@@ -1,0 +1,223 @@
+<template>
+  <div class="menu-container">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li>
+        <router-link to="/login" class="menu-href">Login</router-link>
+      </li>
+      <li>
+        <a href="Transfer.vue" class="menu-href">Transfer</a>
+      </li>
+      <li>
+        <a href="Point.vue" class="menu-href">Point</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script id="renderd-js">
+import { mapState } from 'vuex';
+
+export default {
+  name: 'menu-container',
+  data: function() {
+    return {
+      isActive: false,
+    };
+  },
+  props: {
+    msg: String,
+  },
+  computed: {
+    ...mapState(['transaction_histories']),
+    classObject: function() {
+      return {
+        active: this.isActive,
+      };
+    },
+    classMenuToggle: function() {
+      return {
+        open: this.isActive,
+      };
+    },
+  },
+  methods: {
+    menuToggle: function() {
+      console.log('transaction_histories: ', this.transaction_histories);
+      this.isActive = !this.isActive;
+    },
+  },
+};
+</script>
+
+<style scoped>
+@media only screen {
+  html {
+    font-size: 14px;
+  }
+}
+
+html {
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.wallet-frame {
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 1px 0 40px 0;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.12), 0 1px 2px rgb(0, 0, 0, 0.24);
+  transition: 0.3s ease;
+}
+
+.menu-container {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0;
+  right: 0;
+  transition: 0.5s ease;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #05be77;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  z-index: 3;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.menu-container.active {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 33%;
+  margin: 0 auto 0;
+  /*color: rgba(255, 255, 255, 0.87);*/
+  /*background-color: #05be77;*/
+  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+  /*transition: 0.5s ease;*/
+  /*-moz-transition: 0.5s ease;*/
+  /*-o-transition: 0.5s ease;*/
+  /*-webkit-transition: 0.5s ease;*/
+  /*z-index: 3;*/
+  opacity: 1;
+}
+
+#menu-toggle {
+  width: 33px;
+  height: 33px;
+  margin: 8px 0 0;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  display: inline-block;
+  z-index: 3;
+}
+
+#menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+#menu-toggle .hamburger {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.hamb-line {
+  display: block;
+  background: #54706b;
+  border-radius: 2px;
+}
+
+.cross-line {
+  display: block;
+  background: #54706b;
+  border-radius: 2px;
+}
+
+#menu-toggle .hamburger span {
+  width: 24px;
+  height: 2px;
+  position: relative;
+  top: 3px;
+  left: 4px;
+  margin: 5px 0;
+}
+
+#menu-toggle .hamburger span:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+#menu-toggle .hamburger span:nth-child(2) {
+  transition-delay: 0.625s;
+}
+
+#menu-toggle .hamburger span:nth-child(3) {
+  transition-delay: 0.75s;
+}
+
+#menu-toggle .cross {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform: rotate(45deg);
+  z-index: 5;
+}
+
+#menu-toggle .cross span:nth-child(1) {
+  width: 2px;
+  height: 0%;
+  position: absolute;
+  top: 18%;
+  left: 15px;
+  transition-delay: 0s;
+}
+
+#menu-toggle .cross span:nth-child(2) {
+  width: 0%;
+  height: 2px;
+  position: absolute;
+  left: 18%;
+  top: 15px;
+  transition-delay: 0.25s;
+}
+
+#menu-toggle.open .hamburger span {
+  width: 0%;
+}
+
+#menu-toggle.open .hamburger span:nth-child(1) {
+  transition-delay: 0s;
+}
+
+#menu-toggle.open .hamburger span:nth-child(2) {
+  transition-delay: 0.125s;
+}
+
+#menu-toggle.open .hamburger span:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+#menu-toggle.open .cross span:nth-child(1) {
+  height: 60%;
+  transition-delay: 0.625s;
+  background: #54706b;
+}
+
+#menu-toggle.open .cross span:nth-child(2) {
+  width: 60%;
+  transition-delay: 0.375s;
+  background: #54706b;
+}
+</style>

@@ -1,12 +1,6 @@
 <template>
   <div class="wallet-frame">
-    <div class="menu-container" v-bind:class="classObject">
-      <ul>
-        <li>menu1</li>
-        <li>menu2</li>
-        <li>menu3</li>
-      </ul>
-    </div>
+    <menu-container v-bind:class="classObject"></menu-container>
     <div class="menu-row">
       <div id="menu-toggle" v-bind:class="classMenuToggle">
         <div class="hamburger">
@@ -523,8 +517,12 @@
 </template>
 
 <script id="renderd-js">
+import { mapState } from 'vuex';
+import MenuContainer from './common/MenuContainer';
+
 export default {
   name: 'BankAccount',
+  components: { MenuContainer },
   data: function() {
     return {
       isActive: false,
@@ -534,6 +532,7 @@ export default {
     msg: String,
   },
   computed: {
+    ...mapState(['transaction_histories']),
     classObject: function() {
       return {
         active: this.isActive,
@@ -547,6 +546,7 @@ export default {
   },
   methods: {
     menuToggle: function() {
+      console.log('transaction_histories: ', this.transaction_histories);
       this.isActive = !this.isActive;
     },
   },
@@ -585,7 +585,7 @@ html {
   right: 0;
   transition: 0.5s ease;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #05be77;
+  background-color: #307a7e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -616,11 +616,11 @@ html {
 .container {
   position: relative;
   display: block;
-  height: 145px;
+  height: 170px;
   width: 100%;
   margin: 0 auto 0;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #05be77;
+  background-color: #43a18d;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
@@ -628,25 +628,25 @@ html {
 .monthly-in-out {
   position: relative;
   display: flex;
-  top: 60px;
+  top: 110px;
   width: 100%;
   justify-content: space-evenly;
 }
 
 .deposite-histo {
   position: relative;
-  width: 4px;
+  width: 6px;
   height: 20px;
   display: block;
   border-radius: 3px;
-  background-color: #43a18d;
+  background-color: #4c7b89;
   z-index: 2;
 }
 
 .blank-histo {
   position: relative;
   top: 5px;
-  width: 4px;
+  width: 6px;
   height: 15px;
   display: block;
   border-radius: 3px;
@@ -657,19 +657,20 @@ html {
 .withdrawal-histo {
   position: relative;
   top: 5px;
-  width: 4px;
+  width: 6px;
   height: 15px;
   display: block;
   border-radius: 3px;
-  background-color: #f3e9e9;
+  background-color: #c6cbc6;
   z-index: 2;
 }
 
 .current-deposite-histo {
   position: relative;
   top: -10px;
+  width: 6px;
   height: 30px;
-  background-color: #3c8576;
+  background-color: #385a65;
 }
 
 .current-withdrawal-histo {
@@ -696,7 +697,7 @@ html {
 .month-label-fix {
   position: absolute;
   display: block;
-  top: 20px;
+  top: 30px;
   text-align: center;
   height: 25px;
   width: 100%;
@@ -893,113 +894,5 @@ html {
   padding: 0 auto 0;
   text-align: center;
   font-size: 1.05em;
-}
-
-#menu-toggle {
-  width: 33px;
-  height: 33px;
-  margin: 8px 0 0;
-  position: relative;
-  cursor: pointer;
-  border-radius: 5px;
-  display: inline-block;
-  z-index: 3;
-}
-
-#menu-toggle:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-#menu-toggle .hamburger {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.hamb-line {
-  display: block;
-  background: #54706b;
-  border-radius: 2px;
-}
-
-.cross-line {
-  display: block;
-  background: #54706b;
-  border-radius: 2px;
-}
-
-#menu-toggle .hamburger span {
-  width: 24px;
-  height: 2px;
-  position: relative;
-  top: 3px;
-  left: 4px;
-  margin: 5px 0;
-}
-
-#menu-toggle .hamburger span:nth-child(1) {
-  transition-delay: 0.5s;
-}
-
-#menu-toggle .hamburger span:nth-child(2) {
-  transition-delay: 0.625s;
-}
-
-#menu-toggle .hamburger span:nth-child(3) {
-  transition-delay: 0.75s;
-}
-
-#menu-toggle .cross {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  transform: rotate(45deg);
-  z-index: 5;
-}
-
-#menu-toggle .cross span:nth-child(1) {
-  width: 2px;
-  height: 0%;
-  position: absolute;
-  top: 18%;
-  left: 15px;
-  transition-delay: 0s;
-}
-
-#menu-toggle .cross span:nth-child(2) {
-  width: 0%;
-  height: 2px;
-  position: absolute;
-  left: 18%;
-  top: 15px;
-  transition-delay: 0.25s;
-}
-
-#menu-toggle.open .hamburger span {
-  width: 0%;
-}
-
-#menu-toggle.open .hamburger span:nth-child(1) {
-  transition-delay: 0s;
-}
-
-#menu-toggle.open .hamburger span:nth-child(2) {
-  transition-delay: 0.125s;
-}
-
-#menu-toggle.open .hamburger span:nth-child(3) {
-  transition-delay: 0.25s;
-}
-
-#menu-toggle.open .cross span:nth-child(1) {
-  height: 60%;
-  transition-delay: 0.625s;
-  background: #54706b;
-}
-
-#menu-toggle.open .cross span:nth-child(2) {
-  width: 60%;
-  transition-delay: 0.375s;
-  background: #54706b;
 }
 </style>

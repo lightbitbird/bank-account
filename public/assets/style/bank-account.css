@@ -1,6 +1,6 @@
 @media only screen {
     html {
-        font-size: 14px;
+        font-size: 1.5rem;
     }
 }
 
@@ -368,7 +368,7 @@ html {
 
 .cross-line {
     display: block;
-    background: #54706b;
+    background: #999e9c;
     border-radius: 2px;
 }
 
@@ -407,7 +407,7 @@ html {
     position: absolute;
     top: 18%;
     left: 15px;
-    transition-delay: 0s;
+    transition-delay: 0.25s;
 }
 
 #menu-toggle .cross span:nth-child(2) {
@@ -416,7 +416,7 @@ html {
     position: absolute;
     left: 18%;
     top: 15px;
-    transition-delay: 0.25s;
+    transition-delay: 0.5s;
 }
 
 #menu-toggle.open .hamburger span {
@@ -438,11 +438,11 @@ html {
 #menu-toggle.open .cross span:nth-child(1) {
     height: 60%;
     transition-delay: 0.625s;
-    background: #54706b;
+    background: #999e9c;
 }
 
 #menu-toggle.open .cross span:nth-child(2) {
     width: 60%;
     transition-delay: 0.375s;
-    background: #54706b;
+    background: #999e9c;
 }
