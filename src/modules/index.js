@@ -1,2 +1,5 @@
-export * from './actions';
-export * from './state';
+import balance from './balance';
+
+export default {
+  balance,
+};

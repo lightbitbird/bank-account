@@ -12,7 +12,9 @@
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "moment": "2.22.2",
+    "moment-timezone": "0.5.23"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",
@@ -48,5 +50,18 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightbitbird/bank-account.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightbitbird/bank-account/issues"
+  },
+  "homepage": "https://github.com/lightbitbird/bank-account#readme"
 }

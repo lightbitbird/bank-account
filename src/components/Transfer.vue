@@ -3,124 +3,78 @@
     <div class="input-container">
       <menu-container v-bind:class="classObject"></menu-container>
       <div class="login">
-        <h4 class="center">Log in</h4>
+        <h4 class="center">Transfer</h4>
         <form action="" method="post" class="form" autocomplete="off">
           <div class="row">
             <div class="input-field">
               <input
                 type="text"
-                id="user"
-                name="username"
+                id="transfer_name"
+                name="transfer_name"
                 class="validate"
                 required="required"
-                placeholder="Username"
+                placeholder="Transfer Name"
               />
-              <label for="user" class="active">
-                <i class="material-icons">person</i>
+              <label for="transfer_name" class="active">
+                <i class="material-icons">store</i>
               </label>
             </div>
           </div>
           <div class="row">
             <div class="input-field">
               <input
-                type="password"
-                id="pass"
-                name="password"
+                type="text"
+                id="account_number"
+                name="account_number"
                 class="validate"
                 required="required"
-                placeholder="Password"
+                placeholder="Account Number"
               />
-              <label for="user" class="active">
-                <i class="material-icons">lock</i>
+              <label for="account_number" class="active">
+                <i class="material-icons">credit_card</i>
               </label>
             </div>
           </div>
           <div class="row">
-            <div class="switch col s6">
-              <label>
-                <input type="checkbox" />
-                <span class="lever"></span>
-                Remember Me
+            <div class="input-field">
+              <input
+                type="text"
+                id="deposit_subject"
+                name="deposit_subject"
+                class="validate"
+                required="required"
+                placeholder="Deposit Subject"
+              />
+              <label for="deposit_subject" class="active">
+                <i class="material-icons">save</i>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input
+                type="text"
+                id="amount"
+                name="amount"
+                class="validate"
+                required="required"
+                placeholder="Amount"
+              />
+              <label for="amount" class="active">
+                <i class="material-icons">monetization_on</i>
               </label>
             </div>
           </div>
           <div class="row btn-row">
             <button
               type="submit"
-              name="login"
+              name="transfer"
               class="btn wave-effect waves-light"
             >
-              Log in
+              transfer
             </button>
           </div>
         </form>
-      </div>
-
-      <div class="signup">
-        <h4 class="center signup-title">Sign up</h4>
-        <br />
-        <form
-          action=""
-          class="form"
-          name="signup"
-          method="post"
-          autocomplete="off"
-        >
-          <div class="row">
-            <div class="input-field signup-username">
-              <input
-                type="text"
-                id="name-picked"
-                name="namepicked"
-                class="validate"
-                required="required"
-                placeholder="Enter a username"
-              />
-              <label for="name-picked" class="active">
-                <i class="material-icons">person_add</i>
-              </label>
-            </div>
-            <div class="input-field signup-password">
-              <input
-                type="password"
-                id="pass-picked"
-                name="passpicked"
-                class="validate"
-                required="required"
-                placeholder="Password"
-              />
-              <label for="pass-picked" class="active">
-                <i class="material-icons">lock</i>
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field email">
-              <div class="col s12">
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  class="validate"
-                  required="required"
-                  placeholder="Enter your email"
-                />
-                <label for="email" class="active">
-                  <i class="material-icons">mail</i>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="row btn-row">
-          <button
-            type="submit"
-            name="btn-signup"
-            class="btn btn-signup waves-effect waves-light"
-          >
-            Sign Up
-          </button>
-        </div>
       </div>
     </div>
   </div>
@@ -131,7 +85,7 @@ import { mapState } from 'vuex';
 import MenuContainer from './common/MenuContainer';
 
 export default {
-  name: 'login',
+  name: 'transfer',
   components: { MenuContainer },
   data: function() {
     return {

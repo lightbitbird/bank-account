@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
-import BankAccount from './components/BankAccount.vue';
+import Balance from './components/Balance.vue';
 import Login from './components/Login.vue';
+import Transfer from './components/Transfer.vue';
 import Top from './components/Top';
 
 Vue.use(Router);
@@ -27,9 +28,14 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/account',
-      name: 'BankAccount',
-      component: BankAccount,
+      path: '/balance',
+      name: 'Balance',
+      component: Balance,
+    },
+    {
+      path: '/transfer',
+      name: 'Transfer',
+      component: Transfer,
     },
   ],
 });

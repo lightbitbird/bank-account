@@ -1,14 +1,14 @@
 <template>
   <div class="top">
-    <BankAccount msg="Bank Account App" />
+    <balance msg="Bank Account App" />
   </div>
 </template>
 
 <script>
-import BankAccount from './BankAccount';
+import Balance from './Balance';
 export default {
   name: 'top',
-  components: { BankAccount },
+  components: { Balance },
   props: {
     msg: String,
   },

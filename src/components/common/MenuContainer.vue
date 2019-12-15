@@ -1,20 +1,38 @@
 <template>
-  <div class="menu-container">
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li>
-        <router-link to="/login" class="menu-href">Login</router-link>
-      </li>
-      <li>
-        <a href="Transfer.vue" class="menu-href">Transfer</a>
-      </li>
-      <li>
-        <a href="Point.vue" class="menu-href">Point</a>
-      </li>
-    </ul>
+  <div class="menu">
+    <div class="menu-container" v-bind:class="classObject">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>
+          <router-link to="/login" class="menu-href">Login</router-link>
+        </li>
+        <li>
+          <router-link to="/balance" class="menu-href">Balance</router-link>
+        </li>
+        <li>
+          <router-link to="/transfer" class="menu-href">Transfer</router-link>
+        </li>
+        <li>
+          <router-link to="/" class="menu-href">Point</router-link>
+        </li>
+      </ul>
+    </div>
+    <div class="menu-row">
+      <div id="menu-toggle" v-bind:class="classMenuToggle">
+        <div class="hamburger">
+          <span class="hamb-line"></span>
+          <span class="hamb-line"></span>
+          <span class="hamb-line"></span>
+        </div>
+        <div class="cross" v-on:click="menuToggle">
+          <span class="cross-line"></span>
+          <span class="cross-line"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,7 +50,7 @@ export default {
     msg: String,
   },
   computed: {
-    ...mapState(['transaction_histories']),
+    ...mapState('balance', ['transaction_histories']),
     classObject: function() {
       return {
         active: this.isActive,
@@ -46,7 +64,6 @@ export default {
   },
   methods: {
     menuToggle: function() {
-      console.log('transaction_histories: ', this.transaction_histories);
       this.isActive = !this.isActive;
     },
   },
@@ -67,16 +84,6 @@ html {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.wallet-frame {
-  position: relative;
-  background: #ffffff;
-  border-radius: 5px;
-  padding: 1px 0 40px 0;
-  box-sizing: border-box;
-  box-shadow: 0 1px 3px rgb(0, 0, 0, 0.12), 0 1px 2px rgb(0, 0, 0, 0.24);
-  transition: 0.3s ease;
-}
-
 .menu-container {
   position: absolute;
   width: 0;
@@ -85,7 +92,7 @@ html {
   right: 0;
   transition: 0.5s ease;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #05be77;
+  background-color: #307a7e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
   -moz-transition: 0.3s ease;
@@ -113,10 +120,34 @@ html {
   opacity: 1;
 }
 
+@media only screen and (min-width: 600px) {
+  .menu-container.active {
+    width: 340px;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 599px) {
+  .menu-container.active {
+    width: 100%;
+  }
+}
+
+.menu-row {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  top: 0;
+  /*right: calc(38px - 100%);*/
+  right: 34px;
+  z-index: 3;
+}
+
 #menu-toggle {
-  width: 33px;
-  height: 33px;
-  margin: 8px 0 0;
+  width: 38px;
+  height: 38px;
+  margin: 9px 0 0;
+  right: 12px;
   position: relative;
   cursor: pointer;
   border-radius: 5px;
@@ -150,8 +181,8 @@ html {
   width: 24px;
   height: 2px;
   position: relative;
-  top: 3px;
-  left: 4px;
+  top: 6px;
+  left: 7px;
   margin: 5px 0;
 }
 
@@ -180,7 +211,7 @@ html {
   height: 0%;
   position: absolute;
   top: 18%;
-  left: 15px;
+  left: 18px;
   transition-delay: 0s;
 }
 
@@ -189,7 +220,7 @@ html {
   height: 2px;
   position: absolute;
   left: 18%;
-  top: 15px;
+  top: 18px;
   transition-delay: 0.25s;
 }
 
@@ -212,12 +243,12 @@ html {
 #menu-toggle.open .cross span:nth-child(1) {
   height: 60%;
   transition-delay: 0.625s;
-  background: #54706b;
+  background: #7b957e;
 }
 
 #menu-toggle.open .cross span:nth-child(2) {
   width: 60%;
   transition-delay: 0.375s;
-  background: #54706b;
+  background: #7b957e;
 }
 </style>
