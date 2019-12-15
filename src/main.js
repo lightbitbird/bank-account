@@ -3,7 +3,6 @@ import App from './App.vue';
 import router from './router';
 import filters from './filters';
 import '../public/assets/style/common.css';
-import '../public/assets/style/bank-account.css';
 import store from './store';
 
 Vue.config.productionTip = false;

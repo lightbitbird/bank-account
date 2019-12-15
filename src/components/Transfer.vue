@@ -212,27 +212,6 @@ html {
   font-weight: 200;
 }
 
-.signup-title {
-  color: #fff;
-  opacity: 0;
-  padding: 30px 0 0 0;
-}
-
-.signup .signup-username,
-.signup .signup-password,
-.signup .email,
-.signup .btn-row {
-  opacity: 0;
-}
-
-.signup.active .signup-title,
-.signup.active .signup-username,
-.signup.active .signup-password,
-.signup.active .email,
-.signup.active .btn-row {
-  opacity: 1;
-}
-
 h4 {
   font-size: 2.28rem;
   line-height: 110%;
@@ -325,83 +304,6 @@ input[type='checkbox']:checked {
   color: #000;
 }
 
-.row .switch {
-  width: 100%;
-  text-align: left;
-}
-
-.switch {
-  margin-top: 7px;
-}
-
-.switch,
-.switch * {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.switch label {
-  cursor: pointer;
-}
-
-.switch label input[type='checkbox']:checked + .lever {
-  background-color: rgb(79, 203, 224);
-}
-
-.switch label input[type='checkbox']:checked + .lever:before,
-.switch label input[type='checkbox']:checked + .lever:after {
-  left: 18px;
-}
-
-.switch label input[type='checkbox']:checked + .lever::after {
-  background-color: rgb(50, 134, 155);
-}
-
-.switch label .lever {
-  content: '';
-  display: inline-block;
-  position: relative;
-  width: 36px;
-  height: 14px;
-  background-color: #818181;
-  background-color: rgba(0, 0, 0, 0.38);
-  border-radius: 15px;
-  margin: 0 7px 0 -5px;
-  -webkit-transition: background 0.3s ease;
-  transition: background 0.3s ease;
-  vertical-align: middle;
-}
-
-.switch label .lever:before,
-.switch label .lever:after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  width: 21px;
-  height: 21px;
-  border-radius: 50%;
-  left: -5px;
-  top: -3px;
-  -webkit-transition: left 0.3s ease, background 0.3s ease,
-    -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
-  transition: left 0.3s ease, background 0.3s ease, box-shadow 0.1s ease,
-    transform 0.1s ease, -webkit-box-shadow 0.1s ease,
-    -webkit-transform 0.1s ease;
-}
-
-.switch label .lever:before {
-  background-color: rgba(38, 166, 154, 0.15);
-}
-
-.switch label .lever:after {
-  background-color: #f1f1f1;
-  -webkit-box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
 input[type='checkbox']:checked:not(:disabled) ~ .lever:active::before,
 input[type='checkbox']:checked:not(:disabled).tabbed:focus ~ .lever::before {
   -webkit-transform: scale(2.4);
@@ -432,8 +334,7 @@ input[type='checkbox']:not(:disabled).tabbed:focus ~ .lever::before {
   text-align: center;
 }
 
-.btn,
-.btn-large {
+.btn {
   text-decoration: none;
   background-color: #256063;
   color: #fff;
@@ -444,14 +345,11 @@ input[type='checkbox']:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 button:hover,
-.btn:hover,
-.btn-large:hover {
+.btn:hover {
   background-color: #388e92;
 }
 
-.btn,
-.btn-large,
-.btn-flat {
+.btn {
   font-size: 1rem;
   border: none;
   border-radius: 3px;
@@ -464,18 +362,8 @@ button:hover,
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn,
-.btn-large,
-.btn-floating {
+.btn {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-
-.btn-signup {
-  background-color: darkgray;
-}
-
-.btn-signup:hover {
-  background-color: #464c4d;
 }
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
 import Balance from './components/Balance.vue';
+import Register from './components/Register.vue';
 import Login from './components/Login.vue';
 import Transfer from './components/Transfer.vue';
 import Top from './components/Top';
@@ -21,6 +22,11 @@ export default new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld,
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
     },
     {
       path: '/login',

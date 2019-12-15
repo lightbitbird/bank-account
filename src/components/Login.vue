@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="input-container">
-      <menu-container v-bind:class="classObject"></menu-container>
+      <menu-container></menu-container>
       <div class="login">
         <h4 class="center">Log in</h4>
         <form action="" method="post" class="form" autocomplete="off">
@@ -55,73 +55,6 @@
           </div>
         </form>
       </div>
-
-      <div class="signup">
-        <h4 class="center signup-title">Sign up</h4>
-        <br />
-        <form
-          action=""
-          class="form"
-          name="signup"
-          method="post"
-          autocomplete="off"
-        >
-          <div class="row">
-            <div class="input-field signup-username">
-              <input
-                type="text"
-                id="name-picked"
-                name="namepicked"
-                class="validate"
-                required="required"
-                placeholder="Enter a username"
-              />
-              <label for="name-picked" class="active">
-                <i class="material-icons">person_add</i>
-              </label>
-            </div>
-            <div class="input-field signup-password">
-              <input
-                type="password"
-                id="pass-picked"
-                name="passpicked"
-                class="validate"
-                required="required"
-                placeholder="Password"
-              />
-              <label for="pass-picked" class="active">
-                <i class="material-icons">lock</i>
-              </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field email">
-              <div class="col s12">
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  class="validate"
-                  required="required"
-                  placeholder="Enter your email"
-                />
-                <label for="email" class="active">
-                  <i class="material-icons">mail</i>
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="row btn-row">
-          <button
-            type="submit"
-            name="btn-signup"
-            class="btn btn-signup waves-effect waves-light"
-          >
-            Sign Up
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -133,32 +66,11 @@ import MenuContainer from './common/MenuContainer';
 export default {
   name: 'login',
   components: { MenuContainer },
-  data: function() {
-    return {
-      isActive: false,
-    };
-  },
   props: {
     msg: String,
   },
   computed: {
     ...mapState(['transaction_histories']),
-    classObject: function() {
-      return {
-        active: this.isActive,
-      };
-    },
-    classMenuToggle: function() {
-      return {
-        open: this.isActive,
-      };
-    },
-  },
-  methods: {
-    menuToggle: function() {
-      console.log('transaction_histories: ', this.transaction_histories);
-      this.isActive = !this.isActive;
-    },
   },
 };
 </script>
@@ -175,13 +87,6 @@ html {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87);
-}
-
-.login-body {
-  background-color: #818181;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }
 
 .row {
@@ -218,71 +123,14 @@ html {
   margin-top: 45px;
 }
 
-.signup {
-  top: -2px;
-  left: 0;
-  background-color: #307a7e;
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-/* Show Signup */
-
-.signup.active {
-  width: 100%;
-  height: 520px;
-  border-radius: 10px;
-  position: absolute;
-  transition: 0.3s ease;
-}
-
-.row .input-field .signup-username {
-  transition-delay: 0.2s;
-}
-
-.row .input-field .signup-password {
-  transition-delay: 0.2s;
-}
-
-.row .input-field .signup-email {
-  transition-delay: 0.2s;
-}
-
-.row .btn-signup {
-  transition-delay: 0.2s;
-}
-
-.login h4,
-.signup h4 {
-  font-weight: 200;
-}
-
-.signup-title {
-  color: #fff;
-  opacity: 0;
-  padding: 30px 0 0 0;
-}
-
-.signup .signup-username,
-.signup .signup-password,
-.signup .email,
-.signup .btn-row {
-  opacity: 0;
-}
-
-.signup.active .signup-title,
-.signup.active .signup-username,
-.signup.active .signup-password,
-.signup.active .email,
-.signup.active .btn-row {
-  opacity: 1;
-}
-
 h4 {
   font-size: 2.28rem;
   line-height: 110%;
   margin: 1.14rem 0 0.912rem 0;
+}
+
+.login h4 {
+  font-weight: 200;
 }
 
 .form {
@@ -478,8 +326,7 @@ input[type='checkbox']:not(:disabled).tabbed:focus ~ .lever::before {
   text-align: center;
 }
 
-.btn,
-.btn-large {
+.btn {
   text-decoration: none;
   background-color: #256063;
   color: #fff;
@@ -490,14 +337,11 @@ input[type='checkbox']:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 button:hover,
-.btn:hover,
-.btn-large:hover {
+.btn:hover {
   background-color: #388e92;
 }
 
-.btn,
-.btn-large,
-.btn-flat {
+.btn {
   font-size: 1rem;
   border: none;
   border-radius: 3px;
@@ -510,18 +354,8 @@ button:hover,
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn,
-.btn-large,
-.btn-floating {
+.btn {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
-}
-
-.btn-signup {
-  background-color: darkgray;
-}
-
-.btn-signup:hover {
-  background-color: #464c4d;
 }
 </style>

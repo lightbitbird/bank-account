@@ -7,6 +7,8 @@ const account = {
   account_number: 0,
 };
 
+const year = moment().year();
+
 const months = [
   {
     month: {
@@ -17,7 +19,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 99000,
-          timestamp: '2019/01/03 10:10:20',
+          timestamp: `${year}/01/03 10:10:20`,
           operation: 'Deposit',
         },
         {
@@ -25,7 +27,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 99000,
-          timestamp: '2019/01/16 19:42:36',
+          timestamp: `${year}/01/16 19:42:36`,
           operation: 'Withdrawal',
         },
         {
@@ -33,7 +35,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 12550,
-          timestamp: '2019/01/22 17:48:54',
+          timestamp: `${year}/01/22 17:48:54`,
           operation: 'Deposit',
         },
         {
@@ -41,7 +43,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 30480,
-          timestamp: '2019/01/25 11:23:36',
+          timestamp: `${year}/01/25 11:23:36`,
           operation: 'Withdrawal',
         },
         {
@@ -49,7 +51,7 @@ const months = [
           activity: 'deposit',
           place: 'Amazon',
           amount: 30480,
-          timestamp: '2019/01/25 11:23:36',
+          timestamp: `${year}/01/25 11:23:36`,
           operation: 'Transfer',
         },
       ],
@@ -64,7 +66,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 12000,
-          timestamp: '2019/02/08 20:48:16',
+          timestamp: `${year}/02/08 20:48:16`,
           operation: 'Withdrawal',
         },
         {
@@ -72,7 +74,7 @@ const months = [
           activity: 'deposit',
           place: 'Google',
           amount: 5200,
-          timestamp: '2019/02/11 16:20:32',
+          timestamp: `${year}/02/11 16:20:32`,
           operation: 'Transfer',
         },
         {
@@ -80,7 +82,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 7700,
-          timestamp: '2019/02/18 09:48:41',
+          timestamp: `${year}/02/18 09:48:41`,
           operation: 'Withdrawal',
         },
         {
@@ -88,7 +90,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 1000,
-          timestamp: '2019/02/26 18:40:25',
+          timestamp: `${year}/02/26 18:40:25`,
           operation: 'Deposit',
         },
       ],
@@ -103,7 +105,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 13000,
-          timestamp: '2019/03/03 19:32:01',
+          timestamp: `${year}/03/03 19:32:01`,
           operation: 'Deposit',
         },
         {
@@ -111,7 +113,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 8800,
-          timestamp: '2019/03/11 15:03:06',
+          timestamp: `${year}/03/11 15:03:06`,
           operation: 'Withdrawal',
         },
         {
@@ -119,7 +121,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 27000,
-          timestamp: '2019/03/14 22:22:15',
+          timestamp: `${year}/03/14 22:22:15`,
           operation: 'Deposit',
         },
         {
@@ -127,7 +129,7 @@ const months = [
           activity: 'deposit',
           place: 'FIFA',
           amount: 3400,
-          timestamp: '2019/03/23 13:55:36',
+          timestamp: `${year}/03/23 13:55:36`,
           operation: 'Transfer',
         },
         {
@@ -135,7 +137,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 3400,
-          timestamp: '2019/03/30 17:03:01',
+          timestamp: `${year}/03/30 17:03:01`,
           operation: 'Deposit',
         },
       ],
@@ -150,7 +152,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 21500,
-          timestamp: '2019/04/06 12:47:01',
+          timestamp: `${year}/04/06 12:47:01`,
           operation: 'Withdrawal',
         },
         {
@@ -158,7 +160,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 18000,
-          timestamp: '2019/04/15 13:05:30',
+          timestamp: `${year}/04/15 13:05:30`,
           operation: 'Deposit',
         },
         {
@@ -166,7 +168,7 @@ const months = [
           activity: 'deposit',
           place: 'XYZ Company',
           amount: 2400,
-          timestamp: '2019/04/20 10:08:33',
+          timestamp: `${year}/04/20 10:08:33`,
           operation: 'Transfer',
         },
         {
@@ -174,7 +176,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 1200,
-          timestamp: '2019/04/24 17:40:01',
+          timestamp: `${year}/04/24 17:40:01`,
           operation: 'Withdrawal',
         },
       ],
@@ -189,7 +191,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 33100,
-          timestamp: '2019/05/02 19:13:00',
+          timestamp: `${year}/05/02 19:13:00`,
           operation: 'Deposit',
         },
         {
@@ -197,7 +199,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 16800,
-          timestamp: '2019/05/14 15:17:16',
+          timestamp: `${year}/05/14 15:17:16`,
           operation: 'Deposit',
         },
         {
@@ -205,7 +207,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 900,
-          timestamp: '2019/05/20 18:50:21',
+          timestamp: `${year}/05/20 18:50:21`,
           operation: 'Withdrawal',
         },
         {
@@ -213,7 +215,7 @@ const months = [
           activity: 'deposit',
           place: 'Korea',
           amount: 2700,
-          timestamp: '2019/05/22 19:20:28',
+          timestamp: `${year}/05/22 19:20:28`,
           operation: 'Transfer',
         },
       ],
@@ -228,7 +230,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 4700,
-          timestamp: '2019/06/09 15:21:28',
+          timestamp: `${year}/06/09 15:21:28`,
           operation: 'Withdrawal',
         },
         {
@@ -236,7 +238,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 7500,
-          timestamp: '2019/06/10 19:20:12',
+          timestamp: `${year}/06/10 19:20:12`,
           operation: 'Deposit',
         },
         {
@@ -244,7 +246,7 @@ const months = [
           activity: 'deposit',
           place: 'Japan',
           amount: 3600,
-          timestamp: '2019/06/19 16:47:04',
+          timestamp: `${year}/06/19 16:47:04`,
           operation: 'Transfer',
         },
         {
@@ -252,7 +254,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 8200,
-          timestamp: '2019/06/23 09:00:19',
+          timestamp: `${year}/06/23 09:00:19`,
           operation: 'Withdrawal',
         },
       ],
@@ -267,7 +269,7 @@ const months = [
           activity: 'deposit',
           place: 'America',
           amount: 43000,
-          timestamp: '2019/07/13 10:10:25',
+          timestamp: `${year}/07/13 10:10:25`,
           operation: 'Transfer',
         },
         {
@@ -275,7 +277,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 183400,
-          timestamp: '2019/07/21 11:51:06',
+          timestamp: `${year}/07/21 11:51:06`,
           operation: 'Withdrawal',
         },
         {
@@ -283,7 +285,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 8000,
-          timestamp: '2019/07/23 18:05:15',
+          timestamp: `${year}/07/23 18:05:15`,
           operation: 'Withdrawal',
         },
         {
@@ -291,7 +293,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 32000,
-          timestamp: '2019/07/28 20:10:42',
+          timestamp: `${year}/07/28 20:10:42`,
           operation: 'Deposit',
         },
       ],
@@ -306,7 +308,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 13200,
-          timestamp: '2019/08/07 08:50:30',
+          timestamp: `${year}/08/07 08:50:30`,
           operation: 'Withdrawal',
         },
         {
@@ -314,7 +316,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 9200,
-          timestamp: '2019/08/11 17:36:46',
+          timestamp: `${year}/08/11 17:36:46`,
           operation: 'Deposit',
         },
         {
@@ -322,7 +324,7 @@ const months = [
           activity: 'deposit',
           place: 'ABC Company',
           amount: 2500,
-          timestamp: '2019/08/22 08:30:37',
+          timestamp: `${year}/08/22 08:30:37`,
           operation: 'Transfer',
         },
         {
@@ -330,7 +332,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 4600,
-          timestamp: '2019/08/27 19:06:02',
+          timestamp: `${year}/08/27 19:06:02`,
           operation: 'Withdrawal',
         },
       ],
@@ -345,7 +347,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 59800,
-          timestamp: '2019/09/10 13:25:42',
+          timestamp: `${year}/09/10 13:25:42`,
           operation: 'Withdrawal',
         },
         {
@@ -353,7 +355,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 345000,
-          timestamp: '2019/09/16 12:27:33',
+          timestamp: `${year}/09/16 12:27:33`,
           operation: 'Deposit',
         },
         {
@@ -361,7 +363,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 62000,
-          timestamp: '2019/09/24 22:40:06',
+          timestamp: `${year}/09/24 22:40:06`,
           operation: 'Deposit',
         },
         {
@@ -369,7 +371,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 345000,
-          timestamp: '2019/09/29 19:31:50',
+          timestamp: `${year}/09/29 19:31:50`,
           operation: 'Withdrawal',
         },
       ],
@@ -384,7 +386,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 49000,
-          timestamp: '2019/10/10 21:03:57',
+          timestamp: `${year}/10/10 21:03:57`,
           operation: 'Deposit',
         },
         {
@@ -392,7 +394,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 65000,
-          timestamp: '2019/10/18 20:24:49',
+          timestamp: `${year}/10/18 20:24:49`,
           operation: 'Deposit',
         },
         {
@@ -400,7 +402,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 20000,
-          timestamp: '2019/10/22 18:30:45',
+          timestamp: `${year}/10/22 18:30:45`,
           operation: 'Withdrawal',
         },
         {
@@ -408,7 +410,7 @@ const months = [
           activity: 'deposit',
           place: 'ZZZ Company',
           amount: 20000,
-          timestamp: '2019/10/28 23:49:40',
+          timestamp: `${year}/10/28 23:49:40`,
           operation: 'Transfer',
         },
       ],
@@ -423,7 +425,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 262000,
-          timestamp: '2019/11/08 23:59:50',
+          timestamp: `${year}/11/08 23:59:50`,
           operation: 'Deposit',
         },
         {
@@ -431,7 +433,7 @@ const months = [
           activity: 'deposit',
           place: 'BBB Company',
           amount: 10000,
-          timestamp: '2019/11/09 18:14:00',
+          timestamp: `${year}/11/09 18:14:00`,
           operation: 'Transfer',
         },
         {
@@ -439,7 +441,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 10000,
-          timestamp: '2019/11/11 19:07:01',
+          timestamp: `${year}/11/11 19:07:01`,
           operation: 'Withdrawal',
         },
         {
@@ -447,7 +449,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 5000,
-          timestamp: '2019/11/14 08:00:01',
+          timestamp: `${year}/11/14 08:00:01`,
           operation: 'Deposit',
         },
         {
@@ -455,7 +457,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 10000,
-          timestamp: '2019/11/14 20:49:06',
+          timestamp: `${year}/11/14 20:49:06`,
           operation: 'Withdrawal',
         },
         {
@@ -463,7 +465,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 24500,
-          timestamp: '2019/11/15 16:24:18',
+          timestamp: `${year}/11/15 16:24:18`,
           operation: 'Deposit',
         },
         {
@@ -471,7 +473,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 72000,
-          timestamp: '2019/11/15 09:55:10',
+          timestamp: `${year}/11/15 09:55:10`,
           operation: 'Withdrawal',
         },
       ],
@@ -486,7 +488,7 @@ const months = [
           activity: 'deposit',
           place: 'London',
           amount: 33000,
-          timestamp: '2019/12/11 08:00:25',
+          timestamp: `${year}/12/11 08:00:25`,
           operation: 'Deposit',
         },
         {
@@ -494,7 +496,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 72000,
-          timestamp: '2019/12/15 09:55:10',
+          timestamp: `${year}/12/15 09:55:10`,
           operation: 'Withdrawal',
         },
         {
@@ -502,7 +504,7 @@ const months = [
           activity: 'deposit',
           place: 'AAA Company',
           amount: 14500,
-          timestamp: '2019/12/28 11:27:30',
+          timestamp: `${year}/12/28 11:27:30`,
           operation: 'Transfer',
         },
         {
@@ -510,7 +512,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 37700,
-          timestamp: '2019/12/29 20:44:28',
+          timestamp: `${year}/12/29 20:44:28`,
           operation: 'Withdrawal',
         },
         {
@@ -518,7 +520,7 @@ const months = [
           activity: 'withdrawal',
           place: 'London',
           amount: 14500,
-          timestamp: '2019/12/30 17:30:04',
+          timestamp: `${year}/12/30 17:30:04`,
           operation: 'Withdrawal',
         },
       ],
@@ -600,7 +602,9 @@ const getHistories = () => {
     name: monthNames[month],
     transactions: todayTs,
   };
-  const yesterdayTm = moment().add(-1, 'days').format('YYYY/MM/DD HH:mm:ss');
+  const yesterdayTm = moment()
+    .add(-1, 'days')
+    .format('YYYY/MM/DD HH:mm:ss');
   monthObj.transactions[0].timestamp = yesterdayTm;
   monthObj.transactions[1].timestamp = yesterdayTm;
   const yesterdayTs = [monthObj.transactions[2], monthObj.transactions[3]];
