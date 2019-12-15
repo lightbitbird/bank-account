@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <div class="menu-container" v-bind:class="classObject">
+    <div class="menu-container" v-bind:class="classObject" ref="menuContainer">
       <ul>
         <li></li>
         <li></li>
@@ -17,6 +17,11 @@
         </li>
         <li>
           <router-link to="/" class="menu-href">Point</router-link>
+        </li>
+        <li>
+          <router-link to="/register" class="menu-href menu-href-register"
+            >Register</router-link
+          >
         </li>
       </ul>
     </div>
@@ -44,11 +49,10 @@ export default {
   data: function() {
     return {
       isActive: false,
+      bgColor: '',
     };
   },
-  props: {
-    msg: String,
-  },
+  props: ['menuColor', 'msg'],
   computed: {
     ...mapState('balance', ['transaction_histories']),
     classObject: function() {
@@ -66,6 +70,11 @@ export default {
     menuToggle: function() {
       this.isActive = !this.isActive;
     },
+  },
+  mounted() {
+    this.$refs.menuContainer.style = this.menuColor
+      ? `background-color: ${this.menuColor}`
+      : '';
   },
 };
 </script>
@@ -88,7 +97,7 @@ html {
   position: absolute;
   width: 0;
   height: 0;
-  top: 0;
+  top: -1px;
   right: 0;
   transition: 0.5s ease;
   color: rgba(255, 255, 255, 0.87);
@@ -109,6 +118,8 @@ html {
   height: 100%;
   width: 33%;
   margin: 0 auto 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   /*color: rgba(255, 255, 255, 0.87);*/
   /*background-color: #05be77;*/
   /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
@@ -243,12 +254,12 @@ html {
 #menu-toggle.open .cross span:nth-child(1) {
   height: 60%;
   transition-delay: 0.625s;
-  background: #7b957e;
+  background: #8f9567;
 }
 
 #menu-toggle.open .cross span:nth-child(2) {
   width: 60%;
   transition-delay: 0.375s;
-  background: #7b957e;
+  background: #8f9567;
 }
 </style>
