@@ -496,6 +496,7 @@ div.month-label-box a {
 .detail {
   position: relative;
   display: flex;
+  overflow: auto;
   justify-content: space-between;
   width: 98%;
   top: 1px;
