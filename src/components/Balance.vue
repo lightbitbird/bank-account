@@ -143,7 +143,7 @@ export default {
       maxDeposit: 0,
       minDeposit: 0,
       currentMonth: moment().month(),
-      thisMonth: moment().month(),
+      thisMonth: 11,
       monthList: {},
     };
   },
@@ -187,9 +187,13 @@ export default {
       };
     },
     currentMonthTitle() {
-      return moment().month() === this.currentMonth
+      const step = 11 - moment().month();
+      const shift = this.currentMonth - step;
+      const targetMonth =
+        shift >= 0 ? shift : this.currentMonth + moment().month() + 1;
+      return this.currentMonth === 11
         ? 'This Month'
-        : messages.monthNames[this.currentMonth];
+        : messages.monthNames[targetMonth];
     },
   },
   methods: {
@@ -208,8 +212,8 @@ export default {
           ].toLocaleString()}`
         : 0;
     },
-    changeMonth: function(current) {
-      this.currentMonth = current;
+    changeMonth: function(index) {
+      this.currentMonth = index;
       this.monthList = this.transaction_histories.histories.months[
         this.currentMonth
       ].month;
@@ -217,6 +221,7 @@ export default {
   },
   async mounted() {
     await this.getBalance();
+    this.changeMonth(11);
     this.monthList = this.transaction_histories.histories.month;
     if (
       this.transaction_histories.totals.withdrawals &&
