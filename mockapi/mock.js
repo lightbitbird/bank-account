@@ -563,10 +563,33 @@ const totals = {
   },
 };
 
+const sortMonths = current => {
+  // let n = 0;
+  let startToEndMonths = [];
+  const start = current - 11;
+  let target = {};
+  for (let n = start; n <= current; n++) {
+    if (n < 0) {
+      const year = moment().year() - 1;
+      target = months[n + 12];
+      target.month.transactions.forEach((value, idx) => {
+        let timestamp = moment(value.timestamp.replace(/\//gi, '-'))
+          .add(-1, 'year')
+          .format('YYYY/MM/DD HH:mm:ss');
+        value.timestamp = timestamp;
+      });
+    } else {
+      target = months[n];
+    }
+    startToEndMonths.push(target);
+  }
+  return startToEndMonths;
+};
+
 const histories = {
   today: [months[11].month.transactions[1]],
   yesterday: [months[11].month.transactions[0]],
-  months: months,
+  months: sortMonths(moment().month()),
   month: months[11].month,
 };
 
@@ -592,14 +615,13 @@ const monthNames = [
 ];
 
 const getHistories = () => {
-  const month = moment().month();
   const todayTm = moment().format('YYYY/MM/DD HH:mm:ss');
-  const monthObj = transaction_histories.histories.months[month].month;
+  const monthObj = transaction_histories.histories.months[11].month;
   monthObj.transactions[2].timestamp = todayTm;
   monthObj.transactions[3].timestamp = todayTm;
   const todayTs = [monthObj.transactions[2], monthObj.transactions[3]];
   const today = {
-    name: monthNames[month],
+    name: monthNames[11],
     transactions: todayTs,
   };
   const yesterdayTm = moment()
@@ -609,7 +631,7 @@ const getHistories = () => {
   monthObj.transactions[1].timestamp = yesterdayTm;
   const yesterdayTs = [monthObj.transactions[2], monthObj.transactions[3]];
   const yesterday = {
-    name: monthNames[month],
+    name: monthNames[11],
     transactions: yesterdayTs,
   };
   transaction_histories.histories.today = today;
