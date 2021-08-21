@@ -16,13 +16,15 @@ const account = {
 };
 
 const totals = {
-  deposits: { current: transaction, months: [] },
-  withdrawals: { current: transaction, months: [] },
+  deposit: [],
+  withdrawal: [],
 };
 
 const month = {
   name: '',
   transactions: [],
+  today: [],
+  yesterday: [],
 };
 
 const histories = {
@@ -33,11 +35,25 @@ const histories = {
 };
 
 export default {
+  // transaction_histories: {
+  //   balance: 0,
+  //   account: account,
+  //   totals: {
+  //     deposit: { current: transaction, months: [] },
+  //     withdrawal: { current: transaction, months: [] },
+  //   },
+  //   histories: histories,
+  //   session: session,
+  // },
   transaction_histories: {
-    balance: 0,
-    account: account,
+    balance: {
+      deposit: 0,
+      withdrawal: 0,
+      total: 0,
+    },
+    month: month,
     totals: totals,
-    histories: histories,
-    session: session,
+    today: [],
+    yesterday: [],
   },
 };

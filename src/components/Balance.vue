@@ -5,12 +5,12 @@
       <div class="deposit-menu-row">
         <div class="deposit-menu-text">Deposite balance</div>
         <div class="balance">
-          ${{ transaction_histories.balance | numberFormat }}
+          ${{ transaction_histories.balance.total | numberFormat }}
         </div>
       </div>
       <div class="monthly-in-out">
         <div
-          v-for="(history, key) in transaction_histories.totals.deposits.months"
+          v-for="(data, key) in transaction_histories.totals.deposit"
           class="month"
           :key="key"
         >
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="month-label">
-              {{ transaction_histories.histories.months[key].month.name }}
+              {{ histoName(key) }}
             </div>
           </div>
         </div>
@@ -56,67 +56,67 @@
           </div>
         </div>
       </div>
-      <div class="border-line" v-show="thisMonth === currentMonth">
+      <div class="border-line" v-show="currentMonth === targetMonth">
         Today
       </div>
-      <ul class="statements" v-show="thisMonth === currentMonth">
+      <ul class="statements" v-show="currentMonth === targetMonth">
         <li
-          v-for="(transaction, key) in transaction_histories.histories.today
-            .transactions"
-          :class="transaction.activity"
+          v-for="(transaction, key) in transaction_histories.today"
+          :class="transaction.type"
           :key="key"
         >
           <div class="detail">
-            <div class="">
+            <div class="transaction-line">
+              <span class="timestamp">{{ transaction.transaction_at }}</span>
               <span class="dep-type">{{ transaction.operation }}</span
               >&nbsp;<span class="place">{{ transaction.place }}</span
               >&nbsp;
-              <span class="timestamp">{{ transaction.timestamp }}</span>
             </div>
-            <div :class="`d-${transaction.activity}-amount`">
+            <div :class="`${transaction.type}-amount`">
               ${{ transaction.amount | numberFormat }}
             </div>
           </div>
         </li>
       </ul>
-      <div class="border-line" v-show="thisMonth === currentMonth">
+      <div class="border-line" v-show="currentMonth === targetMonth">
         Yesterday
       </div>
-      <ul class="statements" v-show="thisMonth === currentMonth">
+      <ul class="statements" v-show="currentMonth === targetMonth">
         <li
-          v-for="(transaction, key) in transaction_histories.histories.yesterday
-            .transactions"
-          :class="transaction.activity"
+          v-for="(transaction, key) in transaction_histories.yesterday"
+          :class="transaction.type"
           :key="key"
         >
           <div class="detail">
-            <div class="">
+            <div class="transaction-line">
+              <span class="timestamp">{{ transaction.transaction_at }}</span>
               <span class="dep-type">{{ transaction.operation }}</span
               >&nbsp; <span class="place">{{ transaction.place }}</span
               >&nbsp;
-              <span class="timestamp">{{ transaction.timestamp }}</span>
             </div>
-            <div :class="`d-${transaction.activity}-amount`">
+            <div :class="`${transaction.type}-amount`">
               ${{ transaction.amount | numberFormat }}
             </div>
           </div>
         </li>
       </ul>
-      <div class="border-line">{{ currentMonthTitle }}</div>
+      <div class="border-line">
+        {{ currentMonthTitle(transaction_histories.month.name) }}
+      </div>
       <ul class="statements">
         <li
-          v-for="(transaction, key) in monthList.transactions"
-          :class="transaction.activity"
+          v-for="(transaction, key) in transaction_histories.month.transactions"
+          :class="transaction.type"
           :key="key"
         >
           <div class="detail">
-            <div class="">
+            <div class="transaction-line">
+              <span class="timestamp">{{ transaction.transaction_at }}</span>
               <span class="dep-type">{{ transaction.operation }}</span
-              >&nbsp; <span class="place">{{ transaction.place }}</span
+              >&nbsp; <span class="place">{{ transfer(transaction) }}</span
               >&nbsp;
-              <span class="timestamp">{{ transaction.timestamp }}</span>
             </div>
-            <div :class="`d-${transaction.activity}-amount`">
+            <div :class="`${transaction.type}-amount`">
               ${{ transaction.amount | numberFormat }}
             </div>
           </div>
@@ -142,9 +142,9 @@ export default {
       minWithdrawal: 0,
       maxDeposit: 0,
       minDeposit: 0,
-      currentMonth: moment().month(),
-      thisMonth: 11,
-      monthList: {},
+      currentMonth: `${moment().year()}${('0' + moment().month()).slice(-2)}`,
+      targetMonth: `${moment().year()}${('0' + moment().month()).slice(-2)}`,
+      // monthInfo: { transactions: [], name: '' },
     };
   },
   props: {
@@ -153,98 +153,122 @@ export default {
   computed: {
     ...mapState('balance', ['transaction_histories']),
     styleWithdrawalHistogram() {
-      return function(idx) {
+      return function(month_date) {
         let style = '';
         if (this.maxWithdrawal > 0) {
-          const height =
-            (this.transaction_histories.totals.withdrawals.months[idx] * 50) /
-            this.maxWithdrawal;
-          const top = 20 - height;
-          const current =
-            this.currentMonth === idx
-              ? 'background-color: #ffffff; border-radius: 3px;'
-              : '';
-          style = `top: ${top}px; height: ${height}px;${current}`;
+          const target = this.transaction_histories.totals.withdrawal[
+            month_date
+          ];
+          if (target) {
+            const height = (target * 50) / this.maxWithdrawal;
+            const top = 20 - height;
+            const current =
+              this.realMonth() === month_date
+                ? 'background-color: #ffffff; border-radius: 3px;'
+                : '';
+            style = `top: ${top}px; height: ${height}px;${current}`;
+          }
         }
         return `${style}`;
       };
     },
     styleDepositHistogram() {
-      return function(idx) {
+      return function(month_date) {
         let style = '';
         if (this.maxDeposit > 0) {
-          const height =
-            (this.transaction_histories.totals.deposits.months[idx] * 50) /
-            this.maxDeposit;
-          const top = 20 - height;
-          const current =
-            this.currentMonth === idx
-              ? 'background-color: #385a65; border-radius: 3px;'
-              : '';
-          style = `top: ${top}px; height: ${height}px;${current}`;
+          const target = this.transaction_histories.totals.deposit[month_date];
+          if (target) {
+            const height = (target * 50) / this.maxDeposit;
+            const top = 20 - height;
+            const current =
+              this.realMonth() === month_date
+                ? 'background-color: #385a65; border-radius: 3px;'
+                : '';
+            style = `top: ${top}px; height: ${height}px;${current}`;
+          }
         }
         return `${style}`;
       };
     },
+    histoName() {
+      return function(month_date) {
+        const month = month_date ? parseInt(month_date.substr(4, 2)) : 0;
+        return messages.monthNames[month];
+      };
+    },
     currentMonthTitle() {
-      const step = 11 - moment().month();
-      const shift = this.currentMonth - step;
-      const targetMonth =
-        shift >= 0 ? shift : this.currentMonth + moment().month() + 1;
-      return this.currentMonth === 11
-        ? 'This Month'
-        : messages.monthNames[targetMonth];
+      return function(name) {
+        const month = parseInt(this.targetMonth.substr(4, 2));
+        return this.currentMonth === month ? 'This Month' : name;
+      };
     },
   },
   methods: {
-    ...mapActions('balance', ['getBalance']),
+    ...mapActions('balance', ['getMonthBalance']),
     getCurrentTotalWithdrawal: function() {
-      return this.transaction_histories.totals.withdrawals.months.length > 0
-        ? `$${this.transaction_histories.totals.withdrawals.months[
-            this.currentMonth
-          ].toLocaleString()}`
-        : 0;
+      return this.transaction_histories.balance.withdrawal
+        ? `$${this.transaction_histories.balance.withdrawal.toLocaleString()}`
+        : `$0`;
     },
     getCurrentTotalDeposit: function() {
-      return this.transaction_histories.totals.deposits.months.length > 0
-        ? `$${this.transaction_histories.totals.deposits.months[
-            this.currentMonth
-          ].toLocaleString()}`
-        : 0;
+      return this.transaction_histories.balance.deposit
+        ? `$${this.transaction_histories.balance.deposit.toLocaleString()}`
+        : `$0`;
     },
-    changeMonth: function(index) {
-      this.currentMonth = index;
-      this.monthList = this.transaction_histories.histories.months[
-        this.currentMonth
-      ].month;
+    setMonth: function(month_date) {
+      const year = parseInt(month_date.substr(0, 4));
+      const m = parseInt(month_date.substr(4, 2)) - 1;
+      const month = ('0' + m).slice(-2);
+      this.targetMonth = `${year}${month}`;
+    },
+    changeMonth: async function(month_date) {
+      const tm = moment([
+        parseInt(month_date.substr(0, 4)),
+        parseInt(month_date.substr(4, 2)) - 1,
+        1,
+      ])
+        .utcOffset('+9:00')
+        .format('YYYYMMDDHHmmss');
+
+      this.setMonth(month_date);
+      this.getMonthBalance(tm);
+      await this.$nextTick();
+    },
+    realMonth: function() {
+      const year = parseInt(this.targetMonth.substr(0, 4));
+      const m = parseInt(this.targetMonth.substr(4, 2));
+      const month = ('0' + (m + 1)).slice(-2);
+      return `${year}${month}`;
+    },
+    transfer: function(transaction) {
+      return transaction.account_from &&
+        transaction.account_number !== transaction.account_from
+        ? `From ${transaction.account_from}`
+        : transaction.account_to &&
+          transaction.account_number !== transaction.account_to
+        ? `To ${transaction.account_to}`
+        : '';
     },
   },
   async mounted() {
-    await this.getBalance();
-    this.changeMonth(11);
-    this.monthList = this.transaction_histories.histories.month;
-    if (
-      this.transaction_histories.totals.withdrawals &&
-      this.transaction_histories.totals.withdrawals.months.length > 0
-    ) {
+    await this.getMonthBalance();
+    // this.monthInfo = this.transaction_histories.month;
+    if (this.transaction_histories.totals.withdrawal) {
       const max = Math.max(
-        ...this.transaction_histories.totals.withdrawals.months
+        ...Object.values(this.transaction_histories.totals.withdrawal)
       );
       const min = Math.min(
-        ...this.transaction_histories.totals.withdrawals.months
+        ...Object.values(this.transaction_histories.totals.withdrawal)
       );
       this.maxWithdrawal = max;
       this.minWithdrawal = min;
     }
-    if (
-      this.transaction_histories.totals.deposits &&
-      this.transaction_histories.totals.deposits.months.length > 0
-    ) {
+    if (this.transaction_histories.totals.deposit) {
       const max = Math.max(
-        ...this.transaction_histories.totals.deposits.months
+        ...Object.values(this.transaction_histories.totals.deposit)
       );
       const min = Math.min(
-        ...this.transaction_histories.totals.deposits.months
+        ...Object.values(this.transaction_histories.totals.deposit)
       );
       this.maxDeposit = max;
       this.minDeposit = min;
@@ -428,6 +452,13 @@ div.month-label-box a {
   color: rgba(51, 52, 53, 0.58);
 }
 
+.transaction-line {
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  text-align: left;
+}
+
 .deposit-amount {
   position: relative;
   display: inline-block;
@@ -436,6 +467,10 @@ div.month-label-box a {
   margin: 0 auto 0;
   font-size: 0.9em;
   color: rgba(23, 128, 93, 0.7);
+}
+
+.detail .deposit-amount {
+  text-align: right;
 }
 
 .withdrawal-text {
@@ -456,6 +491,10 @@ div.month-label-box a {
   margin: 0 auto 0;
   font-size: 0.9em;
   color: rgba(51, 52, 53, 0.58);
+}
+
+.detail .withdrawal-amount {
+  text-align: right;
 }
 
 .border-line {

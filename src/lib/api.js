@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_HOST = 'http://localhost';
-const API_PORT = '5000';
+const API_PORT = '9000';
 
 const apiClientConfig = {
   _validateStatus(status) {
@@ -59,6 +59,7 @@ async function requestGet(endpoint, queryParams = {}) {
       .http(
         {
           baseURL: `${API_HOST}:${API_PORT}`,
+          // withCredentials: true,
         },
         headers
       )

@@ -6,6 +6,7 @@ import Register from './components/Register.vue';
 import Login from './components/Login.vue';
 import Transfer from './components/Transfer.vue';
 import Top from './components/Top';
+import BkupBalance from './components/BkupBalance';
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/transfer',
       name: 'Transfer',
       component: Transfer,
+    },
+    {
+      path: '/bkup-balance',
+      name: 'BackupBalance',
+      component: BkupBalance,
     },
   ],
 });
